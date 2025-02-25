@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://cy5ovs5lvndq0"]
+
+[ext_resource type="Script" path="res://personajes.gd" id="1_n6esp"]
+
+[sub_resource type="Animation" id="Animation_3vtjk"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_a4tjh"]
+resource_name = "hurt"
+
+[sub_resource type="Animation" id="Animation_8yi68"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.1
+
+[sub_resource type="Animation" id="Animation_lxju3"]
+resource_name = "runAngry"
+loop_mode = 1
+
+[sub_resource type="Animation" id="Animation_fit2o"]
+resource_name = "walk"
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8q00w"]
+_data = {
+"RESET": SubResource("Animation_3vtjk"),
+"hurt": SubResource("Animation_a4tjh"),
+"idle": SubResource("Animation_8yi68"),
+"runAngry": SubResource("Animation_lxju3"),
+"walk": SubResource("Animation_fit2o")
+}
+
+[node name="Personajes" type="CharacterBody2D" groups=["Personajes"]]
+script = ExtResource("1_n6esp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Personajes"]]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["Personajes"]]
+libraries = {
+"": SubResource("AnimationLibrary_8q00w")
+}
+autoplay = "idle"
